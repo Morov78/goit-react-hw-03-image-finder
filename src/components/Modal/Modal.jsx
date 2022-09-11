@@ -8,10 +8,16 @@ export default class Modal extends Component {
   componentDidMount() {
     console.log('Modal componentDidMount');
     window.addEventListener('keydown', this.handleKeyDown);
+    // const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // window.onscroll = function () {
+    //   window.scrollTo(0, scrollTop);
+    // };
   }
+
   componentWillUnmount() {
     console.log('Modal componentWillUnmount');
     window.removeEventListener('keydown', this.handleKeyDown);
+    // window.onscroll = function () {};
   }
   handleKeyDown = event => {
     if (event.code === 'Escape') {

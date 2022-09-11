@@ -23,7 +23,7 @@ export default class ImageGalleryItem extends Component {
         />
         {this.state.showModal && (
           <Modal onClose={this.toggleShowModal}>
-            <img src={largePicture} alt={tags} />
+            <img src={largePicture} alt={tags} loading="lazy" />
           </Modal>
         )}
       </>
