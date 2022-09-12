@@ -13,6 +13,7 @@ export default class ImageGalleryItem extends Component {
 
   render() {
     const { smallPicture, largePicture, tags } = this.props;
+
     return (
       <>
         <img
@@ -23,7 +24,12 @@ export default class ImageGalleryItem extends Component {
         />
         {this.state.showModal && (
           <Modal onClose={this.toggleShowModal}>
-            <img src={largePicture} alt={tags} loading="lazy" />
+            <img
+              className={css['ImageGalleryItem-large-image']}
+              src={largePicture}
+              alt={tags}
+              loading="lazy"
+            />
           </Modal>
         )}
       </>
