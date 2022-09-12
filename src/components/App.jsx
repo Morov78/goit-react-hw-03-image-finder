@@ -29,6 +29,7 @@ export default class App extends Component {
       Notify.warning('You already have the result with this query');
       return;
     }
+
     this.setState({ searchQuery, page: 1, pictures: [] });
   };
 
@@ -39,28 +40,29 @@ export default class App extends Component {
   };
 
   async componentDidUpdate(prevProps, prevState) {
-    // console.log('AppDidUpdate');
     const prevPage = prevState.page;
     const nextPage = this.state.page;
     const prevsearchQuery = prevState.searchQuery;
     const nextsearchQuery = this.state.searchQuery;
-    // console.log(prevsearchQuery, ' == query ==', nextsearchQuery);
-    // console.log(prevPage, '== page ==', nextPage);
 
     if (prevPage === nextPage && prevsearchQuery === nextsearchQuery) {
       return;
     }
+
     this.setState({ status: Status.PENDING, loadMore: false, error: null });
+
     try {
       const data = await API.fetchPictures(
         this.state.searchQuery,
         this.state.page
       );
+
       if (data.totalHits === 0) {
         Notify.warning('No found images on this query');
         this.setState({ status: Status.IDLE });
         return;
       }
+
       const filterPictures = data.hits.map(
         ({ id, webformatURL, largeImageURL, tags }) => ({
           id,
@@ -69,11 +71,14 @@ export default class App extends Component {
           tags,
         })
       );
+
       const newPictures = this.state.pictures.concat(filterPictures);
       let isLoadMore = true;
+
       if (newPictures.length === data.totalHits) {
         isLoadMore = false;
       }
+
       this.setState({
         pictures: newPictures,
         status: Status.RESOLVED,
@@ -86,6 +91,7 @@ export default class App extends Component {
 
   render() {
     const { status, pictures, loadMore } = this.state;
+
     return (
       <div className={css.App}>
         <SearchBar onSubmit={this.handleFormSubmit} />

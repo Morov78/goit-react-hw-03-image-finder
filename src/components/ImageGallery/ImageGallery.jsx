@@ -1,4 +1,4 @@
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import css from './ImageGallery.module.css';
 import PropTypes from 'prop-types';
 
@@ -19,7 +19,9 @@ const ImageGallery = ({ pictures }) => {
     </ul>
   );
 };
+
 export default ImageGallery;
+
 ImageGallery.prototype = {
   pictures: PropTypes.arrayOf(
     PropTypes.shape({

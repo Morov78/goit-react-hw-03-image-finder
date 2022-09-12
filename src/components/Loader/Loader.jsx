@@ -1,6 +1,6 @@
 import { InfinitySpin } from 'react-loader-spinner';
 import css from './Loader.module.css';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 const Loader = () => {
   return (
     <div className={css.Loader}>
@@ -8,4 +8,5 @@ const Loader = () => {
     </div>
   );
 };
+
 export default Loader;

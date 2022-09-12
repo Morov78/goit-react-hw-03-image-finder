@@ -1,24 +1,28 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
 
-// import { Notify } from 'notiflix';
 export default class SearchBar extends Component {
   state = {
     value: '',
   };
+
   handleChange = event => {
     const value = event.currentTarget.value;
     this.setState({ value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
     const value = this.state.value.trim();
     this.setState({ value: '' });
+
     if (value === '') {
       return;
     }
+
     this.props.onSubmit(value);
   };
+
   render() {
     return (
       <header className={css.Searchbar}>
